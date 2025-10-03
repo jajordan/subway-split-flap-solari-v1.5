@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solari Board - Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎯 Solari Board Admin Panel</h1>
+            <p class="subtitle">Configure messages and display settings</p>
+        </header>
+
+        <div class="panel-grid">
+            <!-- Settings Panel -->
+            <div class="panel">
+                <h2>⚙️ Display Settings</h2>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label for="rotationInterval">
+                            Rotation Interval (seconds)
+                            <span class="help-text">How long each message displays before rotating</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="rotationInterval" 
+                            min="1" 
+                            max="300" 
+                            step="1"
+                            value="10"
+                        >
+                    </div>
+                    <button class="btn btn-primary" onclick="admin.updateSettings()">
+                        💾 Save Settings
+                    </button>
+                    <button class="btn btn-secondary" onclick="admin.resetRotation()">
+                        🔄 Reset Rotation
+                    </button>
+                </div>
+            </div>
+
+            <!-- Add New Message Panel -->
+            <div class="panel">
+                <h2>➕ Add New Message</h2>
+                <div class="add-message-form">
+                    <div class="form-group">
+                        <label for="newMessageText">Message Text</label>
+                        <input 
+                            type="text" 
+                            id="newMessageText" 
+                            placeholder="Enter message to display..."
+                            maxlength="100"
+                        >
+                    </div>
+                    <button class="btn btn-success" onclick="admin.addMessage()">
+                        ✅ Add Message
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages List -->
+        <div class="panel">
+            <h2>📝 Messages</h2>
+            <div class="messages-container" id="messagesList">
+                <div class="loading">Loading messages...</div>
+            </div>
+        </div>
+
+        <!-- Preview Link -->
+        <div class="panel preview-panel">
+            <h2>👁️ Display Preview</h2>
+            <p>View the public display board:</p>
+            <a href="http://localhost:3000" target="_blank" class="btn btn-link">
+                🚀 Open Display Board (Port 3000)
+            </a>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
